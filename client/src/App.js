@@ -52,11 +52,11 @@ const App = (props) => {
       </Route>
 
       <Route path='/add-movie'>
-        <AddMovieForm movies={movieList} setMovieList={setMovieList} />
+        <AddMovieForm getMovieList={getMovieList} movies={movieList} setMovieList={setMovieList} />
       </Route>
 
       <Route path='/update-movie/:id'>
-        <UpdateMovieForm movies={movieList} setMovieList={setMovieList} />
+        <UpdateMovieForm getMovieList={getMovieList}  movies={movieList} setMovieList={setMovieList} />
       </Route>
     </>
   );

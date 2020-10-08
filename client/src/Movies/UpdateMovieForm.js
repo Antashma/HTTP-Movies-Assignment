@@ -1,15 +1,14 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import MovieList from './MovieList';
-
 
 const initialData = {
+    id: '',
     title: '',
     director: '',
     metascore: '',
     stars: [],
-    id: '',
+ 
 }
 
 const UpdateMovieForm = (props) => {
@@ -22,8 +21,8 @@ const UpdateMovieForm = (props) => {
         axios
             .get(`http://localhost:5000/api/movies/${id}`)
             .then(res => {
-                console.log(res)
-                setMovie(res.data)
+                console.log('sg : updatemovieform.js : useeffect : res.data', res.data)
+                setMovie(res.data);
             })
             .catch(err => {
                 console.error(err)
@@ -35,7 +34,10 @@ const UpdateMovieForm = (props) => {
         e.persist();
         setMovie({
             ...movie,
-            [e.target.name]: e.target.value
+            [e.target.name]: 
+                e.target.name === 'stars'
+                 ? e.target.value.split(',')
+                 : e.target.value
         })
         console.log(movie)
     }
@@ -45,7 +47,7 @@ const UpdateMovieForm = (props) => {
         axios.put(`http://localhost:5000/api/movies/${id}`, movie)
             .then(res => {
                 console.log('UPDATE sucessful!', res);
-                props.setMovieList(res.data)
+                props.getMovieList();
                 push(`/movies/${id}`);
             })
             .catch(err => {
