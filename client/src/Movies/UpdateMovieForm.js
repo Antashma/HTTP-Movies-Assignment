@@ -62,26 +62,34 @@ const UpdateMovieForm = (props) => {
             {error.length > 0 
             ? <div>{error}</div>
             : <form onSubmit={handleSubmit}>
-                <input type='text' 
-                    name='title'
-                    value={movie.title} 
-                    onChange={handleChanges}
-                />
+                <label>Title:
+                    <input type='text' 
+                        name='title'
+                        value={movie.title} 
+                        onChange={handleChanges}
+                    />
+                </label>
+                <label>Director:
                 <input type='text'
                     name='director' 
                     value={movie.director} 
                     onChange={handleChanges}
                  />
+                 </label>
+                 <label>Metascore: 
                 <input type='number' 
                     name='metascore' 
                     value={movie.metascore} 
                     onChange={handleChanges}
                 />
-                <textarea 
-                    name='stars' 
-                    value={movie.stars} 
-                    onChange={handleChanges}
-                />
+                </label>
+                <label>Stars: (please seperate by comma)
+                    <textarea 
+                        name='stars' 
+                        value={movie.stars} 
+                        onChange={handleChanges}
+                    />
+                </label>
                 <button>Update Movie</button>
              </form>
             }
